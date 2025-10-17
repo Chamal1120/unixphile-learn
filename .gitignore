@@ -6,6 +6,7 @@ publish/
 *.suo
 *.userosscache
 *.sln.docstates
+/src/UnixphileLearn/wwwroot/dist.css
 
 # Visual Studio / Rider / IDE
 .vs/
@@ -16,6 +17,9 @@ publish/
 *.nupkg
 *.snupkg
 packages/
+
+#npm
+/src/UnixphileLearn/node_modules/
 
 # OS
 .DS_Store
