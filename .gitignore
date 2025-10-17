@@ -1,0 +1,32 @@
+# Build outputs
+bin/
+obj/
+publish/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio / Rider / IDE
+.vs/
+.idea/
+*.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# SQLite database (optional, ignore if you don’t want it in git)
+*.db
+
+# Logs
+*.log
+
+# Publish profile (if you want to keep it secret)
+*.PublishSettings
+
