@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: src/UnixphileLearn/package-lock.json
 
       - name: Install Tailwind dependencies
         run: npm ci
