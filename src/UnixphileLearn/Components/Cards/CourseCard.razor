@@ -1,0 +1,17 @@
+@using UnixphileLearn.Models
+
+<div class="card w-full bg-base-200 shadow-xl">
+    <div class="card-body">
+        <h2 class="card-title">@Course.Title</h2>
+        <p>@Course.Description</p>
+        <div class="card-actions justify-end">
+            <button class="btn btn-primary">View Details</button>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public Course Course { get; set; } = default!;
+}

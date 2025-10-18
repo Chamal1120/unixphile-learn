@@ -1,18 +1,64 @@
-﻿<div class="">
-    <div class="">
-        <a class="navbar-brand" href="">UnixphileLearn</a>
-    </div>
-</div>
-
-
-<div class="" onclick="">
-    <nav class="">
-        <div class="">
-            <NavLink class="" href="" Match="NavLinkMatch.All">
-                <span class="" aria-hidden="true"></span> Home
-            </NavLink>
+﻿<nav>
+    <div class="navbar shadow-sm">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h8m-8 6h16" />
+                    </svg>
+                </div>
+                <ul tabindex="-1"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                    <li><a>Browse</a></li>
+                    <li>
+                        <a>Categories</a>
+                        <ul class="p-2">
+                            <li><a>DevOps</a></li>
+                            <li><a>Low-Level</a></li>
+                        </ul>
+                    </li>
+                    <li><a>Support</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-ghost text-xl">UnixPhile Learn</a>
         </div>
-
-    </nav>
-</div>
-
+        <div class="navbar-end hidden sm:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a>Browse</a></li>
+                <li>
+                    <details>
+                        <summary>Categories</summary>
+                        <ul class="p-2">
+                            <li><a>DevOps</a></li>
+                            <li><a>Low-Level</a></li>
+                        </ul>
+                    </details>
+                </li>
+                <li><a>Support</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end flex gap-2 sm:w-fit">
+            <input type="text" placeholder="Search Courses" class="hidden input input-bordered sm:w-auto" />
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-6 rounded-full">
+                        <img alt="" src="/assets/user.svg" class="invert" />
+                    </div>
+                </div>
+                <ul tabindex="-1"
+                    class="navbar-end menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                    <li>
+                        <a class="justify-between">
+                            Profile
+                            <!-- <span class="badge">New</span> -->
+                        </a>
+                    </li>
+                    <li><a>Settings</a></li>
+                    <li><a>Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

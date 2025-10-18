@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddHttpClient();
 builder.Services.AddDbContext<LmsDbContext>(options => options.UseSqlite("Data Source=lms.db"));
 
 var app = builder.Build();
