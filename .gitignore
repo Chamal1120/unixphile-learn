@@ -8,6 +8,11 @@ publish/
 *.sln.docstates
 /src/UnixphileLearn/wwwroot/dist.css
 
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
 # Visual Studio / Rider / IDE
 .vs/
 .idea/
