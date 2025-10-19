@@ -11,13 +11,29 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddHttpClient();
-builder.Services.AddDbContext<LmsDbContext>(options => options.UseSqlite("Data Source=lms.db"));
+
+// Load connection string based on environment
+var environment = builder.Environment.EnvironmentName;
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// Configure the database context to use the connection string from appsettings
+builder.Services.AddDbContext<LmsDbContext>(options =>
+    options.UseSqlServer(connectionString, sqlOptions =>
+        sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(10),
+            errorNumbersToAdd: null
+        )));
+
+// Log the current environment
+Console.WriteLine($"Current Environment: {builder.Environment.EnvironmentName}");
+Console.WriteLine($"Connection String: {connectionString}");
 
 var app = builder.Build();
 
 // Seed initial data (for testing)
 using (var scope = app.Services.CreateScope())
-{ 
+{
     var db = scope.ServiceProvider.GetRequiredService<LmsDbContext>();
     if (!db.Courses.Any())
     {
@@ -30,11 +46,7 @@ using (var scope = app.Services.CreateScope())
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
 }
-
-app.UseHttpsRedirection();
 
 app.UseAntiforgery();
 

@@ -30,7 +30,7 @@ packages/
 .DS_Store
 Thumbs.db
 
-# SQLite database (optional, ignore if you don’t want it in git)
+# SQLite database (optional)
 *.db
 
 # Logs
@@ -38,4 +38,7 @@ Thumbs.db
 
 # Publish profile (if you want to keep it secret)
 *.PublishSettings
+
+# Ignore production appsettings
+src/UnixphileLearn/appsettings.Production.json
 

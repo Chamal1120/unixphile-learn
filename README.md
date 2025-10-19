@@ -1,26 +1,25 @@
 # Unixphile Learn
 
-A lightweight Learning Management System (LMS) that I'm developing for future potential courses. The goal is to keep it super smooth on low end hardware, modular, secure and 100% csharp codebase. 
+A lightweight Learning Management System (LMS). The goal is to keep it super smooth on low end hardware, modular, secure and 100% csharp. 
 
 > [!WARNING]
-> This application is currently in development. Do not use it in production environments without proper testing and security hardening.
+> This application is currently in early development. Do not use it in production environments.
 
-> [!NOTE]
-> The database file (`lms.db`) is created in the root directory of the project. Ensure you have write permissions in the project directory.
-
-## Features
+## Stack
 - **Blazor Server**
 - **Microsoft Minimal APIs**
 - **EF Core**
-- **SQLite**
-- **TailwindCSS**
+- **Microsoft SQL Server**
+- **TailwindCSS with daisyUI**
 
 ## Getting Started
 
 ### Prerequisites
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download)
-- SQLite (optional, for database inspection)
-- Dotnet ef CLI ( use `dotnet tool install --global dotnet-ef`)
+- Microsoft SQL Server
+- SQL Server Management Studio  or sqlcmd (optional, for database inspection)
+- Dotnet ef CLI (use `dotnet tool install --global dotnet-ef`)
+- Node and npm (only for TailwindCSS generation)
 
 ### Installation
 1. Clone the repository:
@@ -33,22 +32,28 @@ A lightweight Learning Management System (LMS) that I'm developing for future po
    ```
 3. Restore dependencies:
    ```bash
-   dotnet restore
+   dotnet restore && npm ci
    ```
-
-4. Database Migration:
-   ```bash
-   dotnet ef database update
-   ```
+4. Set up the database:
+   - Ensure your SQL Server instance is running and accessible.
+   - Update the connection string in `appsettings.Development.json` to point to your SQL Server instance.
+   - Apply migrations to create the database schema:
+     ```bash
+     dotnet ef database update
+     ```
 
 ### Running the Application
 1. Build the project:
    ```bash
    dotnet build
    ```
-2. Run the application:
+2. Run the application with hot reloading:
    ```bash
-   dotnet run
+   dotnet watch
+   ```
+3. Update TailwindCSS along with hot reloading (run in a seperate terminal):
+   ```bash
+   npm run dev watch:css
    ```
 3. Navigate to the URL displayed in the terminal.
 
