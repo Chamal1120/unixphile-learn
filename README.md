@@ -1,15 +1,18 @@
 # Unixphile Learn
 
-A lightweight Learning Management System (LMS). The goal is to keep it super smooth on low end hardware, modular, secure and 100% csharp. 
+A lightweight Learning Management System (LMS). The goal is to make it usable on low end hardware, modular, secure and 100% csharp. 
 
 > [!WARNING]
 > This application is currently in early development. Do not use it in production environments.
 
+- A preview deployed on Azure App Services + Azure SQL can be viewed from [here](unixphile-learn-cne3hjbbb7bnbwdg.canadacentral-01.azurewebsites.net). (uses F1 tier for now so be patient)
+- Check [TODO](/TODO.md) for progress.
+
 ## Stack
-- **Blazor Server**
-- **Microsoft Minimal APIs**
+- **Blazor Server with Minimal APIs**
 - **EF Core**
 - **Microsoft SQL Server**
+- **Auth0**
 - **TailwindCSS with daisyUI**
 
 ## Getting Started

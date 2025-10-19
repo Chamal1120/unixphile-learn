@@ -22,7 +22,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<LmsDbContext>(options =>
     options.UseSqlServer(connectionString, sqlOptions =>
         sqlOptions.EnableRetryOnFailure(
-            maxRetryCount: 5,
+            maxRetryCount: 10,
             maxRetryDelay: TimeSpan.FromSeconds(10),
             errorNumbersToAdd: null
         )));
