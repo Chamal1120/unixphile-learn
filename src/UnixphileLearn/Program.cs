@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Auth0.AspNetCore.Authentication;
 using UnixphileLearn.Components;
 using UnixphileLearn.Data;
 using UnixphileLearn.Models;
@@ -11,6 +12,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
 
 // Load connection string based on environment
 var environment = builder.Environment.EnvironmentName;
@@ -26,8 +28,22 @@ builder.Services.AddDbContext<LmsDbContext>(options =>
         )));
 
 // Log the current environment
-Console.WriteLine($"Current Environment: {builder.Environment.EnvironmentName}");
-Console.WriteLine($"Connection String: {connectionString}");
+// Console.WriteLine($"Current Environment: {builder.Environment.EnvironmentName}");
+// Console.WriteLine($"Connection String: {connectionString}");
+
+builder.Services.AddAuth0WebAppAuthentication(options =>
+{
+    options.Domain = builder.Configuration["Auth0:Domain"]
+        ?? throw new InvalidOperationException("Auth0:Domain configuration is missing.");
+    options.ClientId = builder.Configuration["Auth0:ClientId"]
+        ?? throw new InvalidOperationException("Auth0:ClientId configuration is missing.");
+    options.Scope = "openid profile email";
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/authentication/login";
+});
 
 var app = builder.Build();
 
@@ -57,5 +73,8 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.MapCourseEndpoints();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

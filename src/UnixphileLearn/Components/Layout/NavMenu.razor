@@ -1,4 +1,7 @@
-﻿<nav>
+﻿@using Microsoft.VisualBasic
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<nav>
     <div class="navbar shadow-sm">
         <div class="navbar-start">
             <div class="dropdown">
@@ -11,36 +14,78 @@
                 </div>
                 <ul tabindex="-1"
                     class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                    <li><a>Browse</a></li>
                     <li>
-                        <a>Categories</a>
+                        <NavLink href="/browse">Browse</NavLink>
+                    </li>
+                    <li>
+                        <NavLink href="/categories">Categories</NavLink>
                         <ul class="p-2">
-                            <li><a>DevOps</a></li>
-                            <li><a>Low-Level</a></li>
+                            <li>
+                                <NavLink href="/categories/devops">DevOps</NavLink>
+                            </li>
+                            <li>
+                                <NavLink href="/categories/low-level">Low-Level</NavLink>
+                            </li>
                         </ul>
                     </li>
-                    <li><a>Support</a></li>
+                    <li>
+                        <NavLink href="/support">Support</NavLink>
+                    </li>
+                    @if (isAuthenticated)
+                    {
+                        <li>
+                            <NavLink href="/logout">Logout</NavLink>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <NavLink href="/login">Login</NavLink>
+                        </li>
+                    }
                 </ul>
             </div>
-            <a class="btn btn-ghost text-xl">UnixPhile Learn</a>
+            <NavLink class="btn btn-ghost text-xl" href="/">UnixPhile Learn</NavLink>
         </div>
         <div class="navbar-end hidden sm:flex">
             <ul class="menu menu-horizontal px-1">
-                <li><a>Browse</a></li>
+                <li>
+                    <NavLink href="/browse">Browse</NavLink>
+                </li>
                 <li>
                     <details>
                         <summary>Categories</summary>
                         <ul class="p-2">
-                            <li><a>DevOps</a></li>
-                            <li><a>Low-Level</a></li>
+                            <li>
+                                <NavLink href="/categories/devops">DevOps</NavLink>
+                            </li>
+                            <li>
+                                <NavLink href="/categories/low-level">Low-Level</NavLink>
+                            </li>
                         </ul>
                     </details>
                 </li>
-                <li><a>Support</a></li>
+                <li>
+                    <NavLink href="/support">Support</NavLink>
+                </li>
+                @if (isAuthenticated)
+                {
+                    <li>
+                        <NavLink href="/logout">Logout</NavLink>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <NavLink href="/login">Login</NavLink>
+                    </li>
+                }
             </ul>
         </div>
         <div class="navbar-end flex gap-2 sm:w-fit">
             <input type="text" placeholder="Search Courses" class="hidden input input-bordered sm:w-auto" />
+            @if (isAuthenticated)
+            {
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-6 rounded-full">
@@ -50,15 +95,37 @@
                 <ul tabindex="-1"
                     class="navbar-end menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
                     <li>
-                        <a class="justify-between">
+                        <NavLink href="/profile" class="justify-between">
                             Profile
-                            <!-- <span class="badge">New</span> -->
-                        </a>
+                        </NavLink>
                     </li>
-                    <li><a>Settings</a></li>
-                    <li><a>Logout</a></li>
+                    <li>
+                        <NavLink href="/settings">Settings</NavLink>
+                    </li>
                 </ul>
             </div>
+
+            }
         </div>
     </div>
 </nav>
+
+@code
+{
+    private bool isAuthenticated;
+    private string? userPicture;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
+
+        if (isAuthenticated)
+        {
+            userPicture = user.FindFirst(c => c.Type == "picture")?.Value ?? "/assets/user.png";
+        }
+    }
+
+}

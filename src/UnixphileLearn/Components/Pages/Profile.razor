@@ -1,0 +1,32 @@
+@page "/Profile"
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize]
+
+<h3>Profile</h3>
+
+@if (userName != null && email != null)
+{
+    <p><strong>Username:</strong> @userName</p>
+    <p><strong>Email:</strong> @email</p>
+}
+else
+{
+    <p>Loading user information...</p>
+}
+
+@code {
+    private string? userName;
+    private string? email;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated ?? false)
+        {
+            userName = user.Identity.Name;
+            email = user.FindFirst(c => c.Type == "email")?.Value;
+        }
+    }
+}
