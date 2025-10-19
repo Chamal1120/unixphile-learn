@@ -57,5 +57,8 @@ A lightweight Learning Management System (LMS). The goal is to keep it super smo
    ```
 3. Navigate to the URL displayed in the terminal.
 
+## Deployment
+Refer deployment guide [here.](./deployment-guide.md)
+
 ## License
 This project is licensed under the MIT License.
