@@ -1,4 +1,4 @@
-name: Build and deploy ASP.NET Core Blazor app to Azure Web App
+name: Build and deploy to Azure App Services
 
 on:
   push:

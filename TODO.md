@@ -3,7 +3,7 @@
 - [x] Setup basic scaffold with Tailwind + DaisyUI + Minimal APIs + Models
 - [x] Get the basic setup deployed with CI/CD before any major implementations (I prefer this approach)
 - [x] Authentication
-- [ ] Fix avatar in NavMenu
+- [x] Fix avatar in NavMenu
 - [ ] Add scope support for admin and student
 - [ ] Implement course management:
   - Admin: Create, update, delete courses

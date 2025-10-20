@@ -89,7 +89,7 @@
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-6 rounded-full">
-                        <img alt="" src="/assets/user.svg" class="invert" />
+                        <img alt="" src="@userPicture" class="@(string.IsNullOrEmpty(userPicture) ? "invert" : "")" />
                     </div>
                 </div>
                 <ul tabindex="-1"
@@ -110,22 +110,23 @@
     </div>
 </nav>
 
-@code
-{
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthenticationStateTask { get; set; }
     private bool isAuthenticated;
-    private string? userPicture;
+    private string userPicture = "";
 
     protected override async Task OnInitializedAsync()
     {
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
+        var state = await AuthenticationStateTask;
+        var user = state.User;
 
-        isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
+        isAuthenticated = user.Identity?.IsAuthenticated ?? false;
 
         if (isAuthenticated)
         {
             userPicture = user.FindFirst(c => c.Type == "picture")?.Value ?? "/assets/user.png";
         }
     }
-
 }
