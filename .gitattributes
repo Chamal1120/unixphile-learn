@@ -1,0 +1,7 @@
+# Ignore all files from linguist statistics by default
+* linguist-generated
+
+# Override the linguist to count C#, html and css files for statistics 
+*.cs -linguist-generated
+*.html -linguist-generated
+*.css -linguist-generated

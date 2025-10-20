@@ -1,11 +1,11 @@
 # Unixphile Learn
 
-A lightweight Learning Management System (LMS). The goal is to make it usable on low end hardware, modular, secure and 100% csharp. 
+A lightweight Learning Management System (LMS). The goal is to make it usable on low end hardware, modular, secure and a maintainable 100% csharp codebase. 
 
 > [!WARNING]
-> This application is currently in early development. Do not use it in production environments.
+> This application is currently in early development.
 
-- A preview deployed on Azure App Services + Azure SQL can be viewed from [here](unixphile-learn-cne3hjbbb7bnbwdg.canadacentral-01.azurewebsites.net). (uses F1 tier for now so be patient)
+- A preview deployed on Azure App Services + Azure SQL can be viewed from [this link](https://unixphile-learn-cne3hjbbb7bnbwdg.canadacentral-01.azurewebsites.net) (uses F1 tier for now, so be patient).
 - Check [TODO](/TODO.md) for progress.
 
 ## Stack
@@ -20,7 +20,7 @@ A lightweight Learning Management System (LMS). The goal is to make it usable on
 ### Prerequisites
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download)
 - Microsoft SQL Server
-- SQL Server Management Studio  or sqlcmd (optional, for database inspection)
+- sqlcmd or SQL Server Management Studio (optional, for database inspection)
 - Dotnet ef CLI (use `dotnet tool install --global dotnet-ef`)
 - Node and npm (only for TailwindCSS generation)
 
@@ -61,7 +61,7 @@ A lightweight Learning Management System (LMS). The goal is to make it usable on
 3. Navigate to the URL displayed in the terminal.
 
 ## Deployment
-Refer deployment guide [here.](./deployment-guide.md)
+Refer [deployment guide](./deployment-guide.md).
 
 ## License
-This project is licensed under the MIT License.
+Refer [MIT License](/LICENSE).
